@@ -1,7 +1,23 @@
-Products API – Express.js
+Products Management API (Express.js)
 
-A simple REST API built with Node.js and Express.js to manage products.
-This project uses an in-memory array (no database) and supports product listing, filtering, creation, and updates for stock and price.
+This is a simple Products Management REST API built using Node.js and Express.js.
+It manages product data using an in-memory array (no database).
+
+Features
+
+Get all products
+
+Get product by ID
+
+Get products by category
+
+Add new products
+
+Update full product details
+
+Update product stock
+
+Update product price
 
 Tech Stack
 
@@ -11,18 +27,18 @@ Express.js
 
 CORS
 
-REST API (JSON)
+JSON REST API
 
-Installation & Setup
-1. Install dependencies
+Setup & Run
+Install dependencies
 npm install express cors
-2. Start the server
+Run the server
 node index.js
 
-Server will run at:
+Server will run on:
 
 http://localhost:3000
-Product Data Structure
+Product Data Format
 {
   "id": 1,
   "name": "Wireless Mouse",
@@ -90,10 +106,10 @@ PUT /products/:id/price
 }
 Important Notes
 
-Data is stored in memory (resets when the server restarts)
+Data is stored in memory (resets when server restarts)
 
-id must be unique
+IDs must be unique
 
 Request body keys are case-sensitive
 
-Always send JSON data
+Always send requests with JSON format

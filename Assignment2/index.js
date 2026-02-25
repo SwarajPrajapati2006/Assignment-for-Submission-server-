@@ -22,30 +22,26 @@ app.get("/products", (req, res) => {
 
 app.get("/products/:id", (req, res) => {
   const id = Number(req.params.id);
-  const data = products.find(product => product.id === id);
+  const product = products.find(p => p.id === id);
 
-  if (!data) {
-    return res.status(404).json({
-      message: "data not found"
-    });
+  if (!product) {
+    return res.status(404).json({ msg: "data not found" });
   }
 
   res.status(200).json({
-    message: "Data found",
-    data
+    msg: "Data found",
+    data: product
   });
 });
 
 app.get("/products/category/:categoryName", (req, res) => {
-  const categoryName = req.params.categoryName;
+  const categoryName = req.params.categoryName.toLowerCase();
   const data = products.filter(
-    product => product.category.toLowerCase() === categoryName.toLowerCase()
+    p => p.category.toLowerCase() === categoryName
   );
 
   if (data.length === 0) {
-    return res.status(404).json({
-      msg: "Category not found"
-    });
+    return res.status(404).json({ msg: "Category not found" });
   }
 
   res.status(200).json({
@@ -58,9 +54,7 @@ app.post("/products", (req, res) => {
   const newProducts = req.body;
 
   if (!Array.isArray(newProducts)) {
-    return res.status(400).json({
-      msg: "enter data"
-    });
+    return res.status(400).json({ msg: "enter data" });
   }
 
   products.push(...newProducts);
@@ -76,24 +70,42 @@ app.put("/products/:id/stock", (req, res) => {
   const stock = Number(req.body.stock);
 
   if (Number.isNaN(stock)) {
-    return res.status(400).json({
-      msg: "stock is required and must be a number"
-    });
+    return res.status(400).json({ msg: "stock must be a number" });
   }
 
-  const prod = products.find(product => product.id === id);
+  const product = products.find(p => p.id === id);
 
-  if (!prod) {
-    return res.status(404).json({
-      msg: "product not found"
-    });
+  if (!product) {
+    return res.status(404).json({ msg: "product not found" });
   }
 
-  prod.stock = stock;
+  product.stock = stock;
 
   res.status(200).json({
     msg: "stock updated",
-    data: prod
+    data: product
+  });
+});
+
+app.put("/products/:id/price", (req, res) => {
+  const id = Number(req.params.id);
+  const price = Number(req.body.price);
+
+  if (Number.isNaN(price)) {
+    return res.status(400).json({ msg: "price must be a number" });
+  }
+
+  const product = products.find(p => p.id === id);
+
+  if (!product) {
+    return res.status(404).json({ msg: "data not found" });
+  }
+
+  product.price = price;
+
+  res.status(200).json({
+    msg: "price updated",
+    data: product
   });
 });
 
@@ -101,12 +113,10 @@ app.put("/products/:id", (req, res) => {
   const id = Number(req.params.id);
   const newProduct = req.body;
 
-  const index = products.findIndex(product => product.id === id);
+  const index = products.findIndex(p => p.id === id);
 
   if (index === -1) {
-    return res.status(404).json({
-      msg: "not found"
-    });
+    return res.status(404).json({ msg: "not found" });
   }
 
   products[index] = { ...products[index], ...newProduct };
@@ -116,24 +126,6 @@ app.put("/products/:id", (req, res) => {
     data: products[index]
   });
 });
-
-app.put("/products/:id/price",(req,res)=>{
-    const id = Number(req.params.id);
-    const price  = Number(req.body.price)
-
-
-    const product = products.find(prod=>prod.id==id)
-    if(!product){
-        res.status(404).json({
-            msg:"data not found"
-        })
-    }
-    product.price = price;
-    res.status(200).json({
-        msg:"price Updated",
-        data : product
-    })
-})
 
 app.listen(3000, () => {
   console.log("server is running on port 3000");
