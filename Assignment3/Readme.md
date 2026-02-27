@@ -23,8 +23,8 @@ Start the server
 node index.js
 
 Server will run on
+https://assignment-for-submission-server-5.onrender.com/states
 
-http://localhost:3000
 API Endpoints
 GET /states
 
