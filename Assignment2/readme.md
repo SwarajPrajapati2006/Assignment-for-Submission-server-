@@ -37,7 +37,7 @@ node index.js
 
 Server will run on:
 
-http://localhost:3000
+https://ecomerce-api-c6fn.onrender.com/products
 Product Data Format
 {
   "id": 1,
