@@ -2,6 +2,8 @@ States Management API
 
 This project is a RESTful API built using Node.js and Express.js to manage data of Indian states such as population, literacy rate, GDP, and annual budget.
 
+
+##Postman  documentation link -- https://documenter.getpostman.com/view/50840877/2sBXcHhyWg
 Tech Stack
 
 Node.js
