@@ -1,7 +1,7 @@
 # Student Management API
 
 A RESTful API built using Node.js and Express.js that provides student information and basic academic analytics such as topper, average CGPA, total student count, and filtering by ID or branch.
-
+## postman documentation link --https://documenter.getpostman.com/view/50840877/2sBXcGCzEx
 ## Features
 - Fetch all students
 - Get student by ID
@@ -23,8 +23,7 @@ A RESTful API built using Node.js and Express.js that provides student informati
 2. Start the server:
    node index.js
 
-Server runs at:
-http://localhost:3000
+Server runs at:https://assignment-for-submission-server-9q5r.onrender.com/students
 
 ## API Endpoints
 
